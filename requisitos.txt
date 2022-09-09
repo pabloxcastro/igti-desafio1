@@ -1,0 +1,15 @@
+Data Lake
+EMR
+Crowler
+AWS Athena
+
+
+
+Sobe os arquivos para o data Lake
+utiliza o EMR 
+* para rodar o jupiter e tratar os dados
+* criar o parquet
+Criar um crawler para o parque 
+Athena para consultas usar
+
+
