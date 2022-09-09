@@ -20,14 +20,6 @@ resource "aws_s3_bucket" "datalake" {
   }
 }
 
-/* resource "aws_s3_bucket_object" "codigo_spark" {
-  bucket = aws_s3_bucket.datalake.id
-  key    = "emr-code/pyspark/job_spark_from_tf.py"
-  acl    = "private"
-  source = "../job_spark.py"
-  etag   = filemd5("../job_spark.py")
-} */
-
 /*
 * EMR
 */
@@ -67,26 +59,7 @@ resource "aws_emr_cluster" "emr-cluster-desafio1" {
 
 }
 
-/* resource "aws_iam_role" "iam_emr_service_role" {
-  name = "iam_emr_service_role"
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2008-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "elasticmapreduce.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-}
- */
 resource "aws_iam_instance_profile" "emr_profile" {
   name = "emr_profile"
   role = aws_iam_role.role.name
@@ -117,11 +90,11 @@ EOF
 * aws glue crawler
 */
 resource "aws_glue_crawler" "glue_crawler-desafio1" {
-  database_name = aws_glue_.glue_crawler-desafio1.name
-  name          = "example"
-  role          = aws_iam_role.example.arn
+  database_name = "datalake-parquet-rais"
+  name          = "${var.glue_name}-${var.ambiente}-${var.numero_conta}"
+  role          = "AWSGlueServiceRole-Pratico1"
 
   s3_target {
-    path = "s3://datalake-pablo-908049444636/data-raw/"
+    path = "s3://datalake-pablo-908049444636/data-spark/"
   }
 }

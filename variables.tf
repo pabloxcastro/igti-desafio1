@@ -30,5 +30,12 @@ variable "aws_iam_instance_profile" {
   default = "EMR_EC2_DefaultRole"
 }
 
+/*
+* GLUE
+*/
+variable "glue_name" {
+  default = "glue-igti-desafio1-tf"
+}
+
 
 

@@ -1,1 +1,8 @@
+requisitos.txt
+./desktop.ini
+desktop.ini
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
 .terraform/*
+
